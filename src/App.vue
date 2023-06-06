@@ -1,46 +1,30 @@
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-// import domo from './components/demo.vue'
+import { ref, onMounted } from "vue";
 
-</script>
-<script>
+// 需改成 composition ref(false) 寫法
 
-  export default {
-      data(){
-          return {
-           
-          }
-      },
-      mounted(){
+// 打開 menu
+  function showMenu() {
+    const menu = document.getElementById('menu');
+    const menuParent = document.getElementById('menuParent');
 
-      },
-      methods: {
-        showMenu() {
-          const menu = document.getElementById('menu');
-          const menuParent = document.getElementsByTagName('nav');
+    menu.classList.remove('-top-100%');
+    menu.classList.add('top-0', 'transition-1500', 'ease-in-out', 'opacity-100');
+    menuParent.classList.remove('after:hidden');
+    menuParent.classList.add('after:block');
+  };
 
-          menu.classList.add("flex");
-          menuParent.classList.add("after:block");
-          menuParent.classList.remove("after:hidden");
-        },
-        closeMenu() {
-          const menu = document.getElementById('menu');
-          const menuParent = document.getElementsByTagName('nav');
+  // 關閉 menu
+  function closeMenu() {
+    const menu = document.getElementById('menu');
+    const menuParent = document.getElementById('menuParent');
 
-          menu.classList.remove("flex");
-          menuParent.classList.remove("after:block");
-          menuParent.classList.add("after:hidden");
-        }
-      },
-      components:{
-      },
-      computed: {
+    menu.classList.remove('top-0');
+    menu.classList.add('-top-100%', 'transition-3000', 'ease-in-out', 'opacity-0');
+    menuParent.classList.remove('after:block');
+    menuParent.classList.add('after:hidden');
+  };
 
-      },
-      watch: {
-      }
-          
-  }
 </script>
 
 <template>
@@ -62,137 +46,68 @@
       </div>
       <!-- end:left Menu -->
 
-    <!-- Main Menu --> 
-    <header class="col-start-2 col-end-3 row-start-1 row-end-2 p-[8px_24px] lg:p-[40px_55px_0px_0px]">
-      <nav class="w-100% h-100% flex justify-center items-center after:hidden after:content-[''] after:w-100vw after:h-150vh after:bg-white after:bg-opacity-40 after:absolute after:top-0px after:left-0px after:z-1 lg:after:bg-opacity-100 lg:leading-loose lg:justify-end lg:h-auto">
-        <div class="w-100% lg:hidden"  @click="showMenu">
-          <img src="hamburger.svg" alt="" class="block m-l-auto h-auto w-24px hover:ease-in-out hover:duration-300 hover:scale-135">
+      <!-- Main Menu --> 
+      <header class="col-start-2 col-end-3 row-start-1 row-end-2 p-[8px_24px] lg:p-[40px_55px_0px_0px]">
+        <nav id="menuParent" class="w-100% h-100% flex justify-center items-center after:hidden after:content-[''] after:w-100vw after:h-150vh after:bg-white after:bg-opacity-40 after:absolute after:top-0px after:left-0px after:z-1 lg:after:bg-opacity-100 lg:leading-loose lg:justify-end lg:h-auto">
+          <div class="w-100% lg:hidden"  @click="showMenu">
+            <img src="hamburger.svg" alt="" class="block m-l-auto h-auto w-24px hover:ease-in-out hover:duration-300 hover:scale-135">
+          </div>
+
+          <ul id="menu" class="absolute bg-black w-100% min-h-[40vh] right-0 -top-100% z-9 flex-col gap-20px p-24px box-border lg:static lg:bg-transparent lg:min-h-[auto] lg:flex lg:flex-row lg:justify-end lg:gap-55px lg:p-0px lg:w-auto">
+            <li class="h-30px lg:hidden" id="close" @click="closeMenu">
+              <img src="close.svg" alt="" class="color-white text-white block m-l-auto hover:ease-in-out hover:duration-300 hover:scale-135">
+            </li>
+            <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Home</li>
+            <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Article</li>
+            <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">About</li>
+            <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Location</li>
+            <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">News</li>
+            <li><img src="zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- end:Main Menu --> 
+
+      <section class="col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2">
+        <div class="flex items-start justify-between lg:p-[40px_20px_20px_20px] lg:h-100% lg:justify-around">
+          <div class="hidden max-w-[320px] w-100% lg:block">
+              <h2 class="text-28px leading-48px tracking-[0.1em] mb-24px border-b-1 border-solid border-[#707070] relative after:content-[''] after:w-50% after:h-1px after:bg-[#EFC862] after:absolute after:-bottom-1px after:left-0px">/ 01</h2>
+              <ul>
+                <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">About Cat</li>
+                <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">Senses</li>
+                <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">Behavior</li>
+              </ul>
+          </div>
+          <div class="p-[5%_40px] lg:p-[0%_0px_0%_40px] lg:max-w-400px">
+            <h1 class="font-bold text-36px m-b-24px leading-[1] lg:text-72px">Eat Everyday</h1>
+            <p class="text-12px leading-30px tracking-0.1em lg:text-21px">The cat is a domestic species of small carnivorous mammal.It is the only domesticated species in the family Felidae and is often referred to as the domestic cat to distinguish it from the wild members of the family.</p>
+          </div>
         </div>
+      </section>
 
-        <ul id="menu" class="absolute bg-black w-100% min-h-[40vh] hidden left-0 top-0 z-9 flex-col block gap-20px p-24px lg:static lg:bg-transparent lg:min-h-[auto] lg:flex lg:flex-row lg:justify-end lg:gap-55px lg:p-0px lg:w-auto">
-          <li class="h-30px lg:hidden" id="close" @click="closeMenu">
-            <img src="close.svg" alt="" class="color-white text-white block m-l-auto hover:ease-in-out hover:duration-300 hover:scale-135">
-          </li>
-          <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Home</li>
-          <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Article</li>
-          <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">About</li>
-          <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Location</li>
-          <li class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">News</li>
-          <li><img src="zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
-        </ul>
-      </nav>
-    </header>
-    <!-- end:Main Menu --> 
-
-    <section class="col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2">
-      <div class="flex items-start justify-between lg:p-[40px_20px_20px_20px] lg:h-100% lg:justify-around">
-        <div class="hidden max-w-[320px] w-100% lg:block">
-            <h2 class="text-28px leading-48px tracking-[0.1em] mb-24px border-b-1 border-solid border-[#707070] relative after:content-[''] after:w-50% after:h-1px after:bg-[#EFC862] after:absolute after:-bottom-1px after:left-0px">/ 01</h2>
-            <ul>
-              <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">About Cat</li>
-              <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">Senses</li>
-              <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">Behavior</li>
-            </ul>
+      <footer class="col-start-1 col-end-3 row-start-3 row-end-4 lg:col-start-2 bg-[#00000] bg-opacity-40 backdrop-blur-[20px] p-[24px_40px] flex flex-col justify-around md:flex-row md:gap-24px md:items-center lg:p-[0px_40px] ">
+        <div class="box-border md:w-50%">
+          <h2 class="font-bold tracking-0.4em text-14px lg:p-[12px_0] lg:text-16px">Event</h2>
+          <p class="text-[#A1A1A1] tracking-0.2em text-14px lg:text-16px">Cat’s Foods @Anythings About Cat Club </p>
+          <p class="text-white tracking-0.2em text-14px lg:text-16px">SF - Sat,July 14 / 15-17PM</p>
+          <a href="#" class="p-t-12px flex gap-16px decoration-0 lg:text-16px">
+            <span class="text-[#EFC862] text-xs">●</span>
+            <span class="text-[#A1A1A1] text-xs">●</span>
+            <span class="text-[#A1A1A1] text-xs">●</span>
+          </a>
         </div>
-        <div class="p-[5%_40px] lg:p-[0%_0px_0%_40px] lg:max-w-400px">
-          <h1 class="font-bold text-36px m-b-24px leading-[1] lg:text-72px">Eat Everyday</h1>
-          <p class="text-12px leading-30px tracking-0.1em lg:text-21px">The cat is a domestic species of small carnivorous mammal.It is the only domesticated species in the family Felidae and is often referred to as the domestic cat to distinguish it from the wild members of the family.</p>
+        <div class="flex flex-row-reverse justify-between md:w-50% lg:flex-row">
+          <div class="w-30% max-w-[80px] lg:max-w-600px lg:max-h-[100%] lg:w-100%">
+            <img src="Left.png" alt="" class="block w-100% object-cover lg:h-100%">
+          </div>
+          <div class="flex flex-col gap-16px box-border max-w-65% lg:max-w-100% lg:p-l-24px">
+            <h2 class="font-bold tracking-0.4em text-14px lg:text-16px lg:p-t-12px">News</h2>
+            <p class="leading-18px text-13px text-12px lg:text-13px">The average lifespan of pet cats has risen in recent decades.</p>
+            <a href="#" class="block color-[#EFC862] decoration-0 font-bold leading-22px text-14px">Read more</a>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <footer class="col-start-1 col-end-3 row-start-3 row-end-4 lg:col-start-2 bg-[#00000] bg-opacity-40 backdrop-blur-[20px] p-[24px_40px] flex flex-col justify-around md:flex-row md:gap-24px md:items-center lg:p-[0px_40px] ">
-      <div class="box-border md:w-50%">
-        <h2 class="font-bold tracking-0.4em text-14px lg:p-[12px_0] lg:text-16px">Event</h2>
-        <p class="text-[#A1A1A1] tracking-0.2em text-14px lg:text-16px">Cat’s Foods @Anythings About Cat Club </p>
-        <p class="text-white tracking-0.2em text-14px lg:text-16px">SF - Sat,July 14 / 15-17PM</p>
-        <a href="#" class="p-t-12px flex gap-16px decoration-0 lg:text-16px">
-          <span class="text-[#EFC862] text-xs">●</span>
-          <span class="text-[#A1A1A1] text-xs">●</span>
-          <span class="text-[#A1A1A1] text-xs">●</span>
-        </a>
-      </div>
-      <div class="flex flex-row-reverse justify-between md:w-50% lg:flex-row">
-        <div class="w-30% max-w-[80px] lg:max-w-600px lg:max-h-[100%] lg:w-100%">
-          <img src="Left.png" alt="" class="block w-100% object-cover lg:h-100%">
-        </div>
-        <div class="flex flex-col gap-16px box-border max-w-65% lg:max-w-100% lg:p-l-24px">
-          <h2 class="font-bold tracking-0.4em text-14px lg:text-16px lg:p-t-12px">News</h2>
-          <p class="leading-18px text-13px text-12px lg:text-13px">The average lifespan of pet cats has risen in recent decades.</p>
-          <a href="#" class="block color-[#EFC862] decoration-0 font-bold leading-22px text-14px">Read more</a>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-
-
-  <!-- <div class="font-sans color-white w-100% min-h-[100vh] bg-[url(/Bg.png)] bg-no-repeat bg-center bg-gradient-to-b from-[#313132] from-0% to-[#161618] to-100% grid grid-cols-[11%_auto] grid-rows-[11%_1fr_22%] max-[428px]:bg-white ">
-
-    <div class="col-start-1 col-end-2 row-start-1 row-end-4 flex flex-col justify-between items-center border-r-1 border-solid border-[#707070]">
-      <h2 class="p-40px text-[40px] font-bold leading-[60px]">CAT</h2>
-      <dev class="p-40px">
-        <ul class="flex flex-col gap-32px">
-          <li><img src="t.png" alt="" class="block"></li>
-          <li><img src="IN.png" alt="" class="block"></li>
-          <li><img src="f.png" alt="" class="block"></li>
-        </ul>
-      </dev>
+      </footer>
     </div>
-    
-    <header class="p-[40px_55px] col-start-2 col-end-3 row-start-1 row-end-2">
-      <nav class="leading-loose">
-        <ul class="flex justify-end gap-55px">
-          <li class="text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Home</li>
-          <li class="text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Article</li>
-          <li class="text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">About</li>
-          <li class="text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Location</li>
-          <li class="text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">Location</li>
-          <li><img src="zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
-        </ul>
-      </nav>
-    </header>
-
-    <section class="col-start-2 col-end-3 row-start-2 row-end-3">
-      <div class="flex items-start justify-between p-[10%_10%_5%_5%]">
-        <div class="max-w-[320px] w-100%">
-            <h2 class="text-28px leading-48px tracking-[0.1em] mb-24px border-b-1 border-solid border-[#707070] relative after:content-[''] after:w-50% after:h-1px after:bg-[#EFC862] after:absolute after:-bottom-1px after:left-0px">/ 01</h2>
-            <ul>
-              <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">About Cat</li>
-              <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">Senses</li>
-              <li class="text-13px font-[500px] leading-18px color-[#646464] p-[4px_0] hover:text-21px hover:leading-30px hover:color-white active:text-21px active:leading-30px active:color-white">Behavior</li>
-            </ul>
-        </div>
-        <div class="max-w-400px">
-          <h1 class="font-bold text-72px m-b-24px leading-[1]">Eat Everyday</h1>
-          <p class="text-21px leading-30px tracking-0.1em">The cat is a domestic species of small carnivorous mammal.It is the only domesticated species in the family Felidae and is often referred to as the domestic cat to distinguish it from the wild members of the family.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="col-start-2 col-end-3 row-start-3 row-end-4 flex bg-[#00000] bg-opacity-40 backdrop-blur-[20px]">
-      <div class="w-50% p-40px box-border">
-        <h2 class="font-bold tracking-0.4em p-[12px_0]">Event</h2>
-        <p class="text-[#A1A1A1] tracking-0.2em">Cat’s Foods @Anythings About Cat Club </p>
-        <p class="text-white tracking-0.2em">SF - Sat,July 14 / 15-17PM</p>
-        <a href="#" class="p-t-12px flex gap-16px decoration-0">
-          <span class="text-[#EFC862] text-xs">●</span>
-          <span class="text-[#A1A1A1] text-xs">●</span>
-          <span class="text-[#A1A1A1] text-xs">●</span>
-        </a>
-      </div>
-      <div class="w-50% flex">
-        <div class="max-h-[100%]">
-          <img src="Left.png" alt="" class="block h-100% object-cover">
-        </div>
-        <div class="p-[40px_24px] flex flex-col gap-16px box-border min-[1122px]:p-[5%_24px]">
-          <h2 class="font-bold tracking-0.4em p-[12px_0]">News</h2>
-          <p class="leading-18px text-13px">The average lifespan of pet cats has risen in recent decades.</p>
-          <a href="#" class="blcok color-[#EFC862] decoration-0 font-bold leading-22px">Read more</a>
-        </div>
-      </div>
-    </footer> -->
-
   </div>
 </template>
 
