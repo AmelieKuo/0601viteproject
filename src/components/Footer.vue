@@ -11,8 +11,9 @@
             <span class="text-[#A1A1A1] text-xs">●</span>
           </a>
         </div>
-        <div class="flex flex-row-reverse justify-between md:w-50% lg:flex-row">
-          <div class="w-30% max-w-[80px] lg:max-w-600px lg:max-h-[100%] lg:w-100%">
+
+        <div class="h-100% flex flex-row-reverse justify-between md:w-50% lg:flex-row">
+          <div class="w-50% max-w-[80px] lg:max-w-600px lg:h-100% overflow-hidden">
             <img src="../../public/Left.png" alt="" class="block w-100% object-cover lg:h-100%">
           </div>
           <div class="flex flex-col gap-16px box-border max-w-65% lg:max-w-100% lg:p-l-24px">

@@ -40,7 +40,13 @@ import { ref, onMounted } from "vue";
   function toNewsPage() {
     getID();
     router.push({ path: '/news/' + ID.value });
+
+    toFatherID();
    };
+
+//    function toFatherID(){
+//     const emits = defineEmits(ID);
+//    }
 
 </script>
 
