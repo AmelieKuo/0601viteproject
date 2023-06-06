@@ -1,10 +1,13 @@
 import { createApp } from 'vue'
-// import './style.css'
 import App from './App.vue'
-// main.ts
+import router from './router/index.js'
+
 import 'virtual:uno.css'
 import '@unocss/reset/tailwind.css'
 
 
+router.afterEach((to, from) => {
+    window.scrollTo(0, 0);
+});
 
-createApp(App).mount('#app')
+createApp(App).use(router).mount('#app')

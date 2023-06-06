@@ -1,0 +1,26 @@
+<template>
+    <!-- footer -->
+    <footer class="col-start-1 col-end-3 row-start-3 row-end-4 lg:col-start-2 bg-[#00000] bg-opacity-40 backdrop-blur-[20px] p-[24px_40px] flex flex-col justify-around md:flex-row md:gap-24px md:items-center lg:p-[0px_40px] ">
+        <div class="box-border md:w-50%">
+          <h2 class="font-bold tracking-0.4em text-14px lg:p-[12px_0] lg:text-16px">Event</h2>
+          <p class="text-[#A1A1A1] tracking-0.2em text-14px lg:text-16px">Cat’s Foods @Anythings About Cat Club </p>
+          <p class="text-white tracking-0.2em text-14px lg:text-16px">SF - Sat,July 14 / 15-17PM</p>
+          <a href="#" class="p-t-12px flex gap-16px decoration-0 lg:text-16px">
+            <span class="text-[#EFC862] text-xs">●</span>
+            <span class="text-[#A1A1A1] text-xs">●</span>
+            <span class="text-[#A1A1A1] text-xs">●</span>
+          </a>
+        </div>
+        <div class="flex flex-row-reverse justify-between md:w-50% lg:flex-row">
+          <div class="w-30% max-w-[80px] lg:max-w-600px lg:max-h-[100%] lg:w-100%">
+            <img src="../../public/Left.png" alt="" class="block w-100% object-cover lg:h-100%">
+          </div>
+          <div class="flex flex-col gap-16px box-border max-w-65% lg:max-w-100% lg:p-l-24px">
+            <h2 class="font-bold tracking-0.4em text-14px lg:text-16px lg:p-t-12px">News</h2>
+            <p class="leading-18px text-13px text-12px lg:text-13px">The average lifespan of pet cats has risen in recent decades.</p>
+            <a href="#" class="block color-[#EFC862] decoration-0 font-bold leading-22px text-14px">Read more</a>
+          </div>
+        </div>
+      </footer>
+      <!-- end:footer -->
+</template>

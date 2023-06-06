@@ -1,0 +1,116 @@
+<script setup>
+import { useRouter } from 'vue-router';
+import { ref, onMounted } from "vue";
+
+// 需改成 composition ref(false) 寫法
+
+  // 打開 menu
+  function showMenu() {
+    const menu = document.getElementById('menu');
+    const menuParent = document.getElementById('menuParent');
+
+    menu.classList.remove('-top-100%');
+    menu.classList.add('top-0', 'transition-1500', 'ease-in-out', 'opacity-100');
+    menuParent.classList.remove('after:hidden');
+    menuParent.classList.add('after:block');
+  };
+
+  // 關閉 menu
+  function closeMenu() {
+    const menu = document.getElementById('menu');
+    const menuParent = document.getElementById('menuParent');
+
+    menu.classList.remove('top-0');
+    menu.classList.add('-top-100%', 'transition-3000', 'ease-in-out', 'opacity-0');
+    menuParent.classList.remove('after:block');
+    menuParent.classList.add('after:hidden');
+  };
+
+
+  // /news/ID ID 產生方式
+  const ID = ref("");
+
+  function getID(){
+    ID.value = new Date().getTime().toString(); // 獲取當前時間的 ISO 字符串
+    console.log(ID.value);
+  };
+
+  const router = useRouter();
+
+  function toNewsPage() {
+    getID();
+    router.push({ path: '/news/' + ID.value });
+   };
+
+</script>
+
+
+<template>
+
+    <header
+        class="col-start-2 col-end-3 row-start-1 row-end-2 p-[8px_24px] lg:p-[40px_55px_0px_0px]">
+
+        <!-- mobile 遮罩 -->
+        <nav
+            id="menuParent"
+            class="w-100% h-100% flex justify-center items-center after:hidden after:content-[''] after:w-100vw after:h-100vh after:bg-white after:bg-opacity-40 after:absolute after:top-0px after:left-0px after:z-1 lg:after:bg-opacity-100 lg:leading-loose lg:justify-end lg:h-auto">
+
+            <!-- hamburger -->
+            <div class="w-100% lg:hidden" @click="showMenu">
+                <img
+                    src="../../public/hamburger.svg"
+                    alt=""
+                    class="block m-l-auto h-auto w-24px hover:ease-in-out hover:duration-300 hover:scale-135"></div>
+
+                <ul
+                    id="menu"
+                    class="absolute bg-black w-100% min-h-[40vh] right-0 -top-100% z-9 flex flex-col gap-20px p-24px box-border lg:static lg:bg-transparent lg:min-h-[auto] lg:flex lg:flex-row lg:justify-end lg:gap-55px lg:p-0px lg:w-auto">
+
+                    <!-- close -->
+                    <li class="h-30px lg:hidden" id="close" @click="closeMenu">
+                        <img
+                            src="../../public/close.svg"
+                            alt=""
+                            class="color-white text-white block m-l-auto hover:ease-in-out hover:duration-300 hover:scale-135"></li>
+
+                        <li>
+                            <router-link
+                                to="/"
+                                class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]"
+                                :class="{'active:color-[#EFC862]': $route.name === 'home'}">Home</router-link>
+                        </li>
+                        <li>
+                            <router-link
+                                to="/article"
+                                class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]"
+                                :class="{'active:color-[#EFC862]': $route.name === 'article'}">A-Article</router-link>
+                        </li>
+                        <li
+                            class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">
+                            <router-link
+                                to="/about"
+                                class="a-black"
+                                :class="{'active:color-[#EFC862]': $route.name === 'about'}">B-About</router-link>
+                        </li>
+                        <li
+                            class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">
+                            <router-link
+                                to="/location"
+                                class="a-black"
+                                :class="{'active:color-[#EFC862]': $route.name === 'location'}">C-Location</router-link>
+                        </li>
+                        <li
+                            class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">
+                            <a
+                                href="#"
+                                @click="toNewsPage"
+                                class="a-black"
+                                :class="{'active:color-[#EFC862]': $route.name === 'news'}">D-News</a>
+                        </li>
+                        <li>
+                            <img src="../../public/zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
+                        </ul>
+                    </nav>
+                </header>
+
+            </template>
