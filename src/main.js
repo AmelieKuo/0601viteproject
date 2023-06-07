@@ -7,9 +7,4 @@ import '@unocss/reset/tailwind.css'
 
 import './style.css'
 
-
-router.afterEach((to, from) => {
-    window.scrollTo(0, 0);
-});
-
 createApp(App).use(router).mount('#app')

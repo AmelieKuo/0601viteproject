@@ -14,23 +14,15 @@
         <div
             class="w-100% h-100vh bg-[url(/Bg.png)] bg-no-repeat bg-right bg-contain grid grid-cols-[1fr_25%] grid-rows-[10%_1fr_40%] md:grid-rows-[10%_1fr_30%] lg:grid-cols-[11%_auto] lg:grid-rows-[11%_1fr_22%] lg:bg-[url(/Bg.png)] lg:bg-no-repeat lg:bg-center">
 
-            <!-- sidebar -->
             <Sidebar></Sidebar>
-            <!-- end:sidebar -->
 
-            <!-- Main Menu -->
             <Header></Header>
-            <!-- end:Main Menu -->
 
             <!-- Main Content -->
-            
             <router-view></router-view>
-
             <!-- end: Main Content -->
 
-            <!-- footer -->
             <Footer></Footer>
-            <!-- end:footer -->
 
         </div>
         <!-- end: catBg & grid -->
@@ -38,8 +30,4 @@
     <!-- end: 漸層背景 -->
 </template>
 <style>
-h2{
-  font-family: "Tuffy",sans-serif;
-}
-/* *{ outline: 1px solid greenyellow;} */
 </style>
