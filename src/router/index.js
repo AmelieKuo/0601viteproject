@@ -3,58 +3,55 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+
+        // 以下為 default.layout
         {
-            name: "home",
-            path: "/",
-            component: function() {
-                return import('../views/Home.vue')
-            }
+            path: '/',
+            component: () => import('../layout/default.vue'),
+            children: [
+                {
+                    name: 'home',
+                    path: '',
+                    component: () => import('../views/Home.vue')
+                },
+                {
+                    name: 'article',
+                    path: 'article',
+                    component: () => import('../views/Article.vue')
+                },
+                {
+                    name: 'about',
+                    path: 'about',
+                    component: () => import('../views/About.vue')
+                },
+                {
+                    name: 'location',
+                    path: 'location',
+                    component: () => import('../views/Location.vue'),
+                    meta: {
+                        requiresAuth: true
+                    },
+                },
+            ],
         },
+
+        // 以下為 white.layout
         {
-            name: "article",
-            path: "/article",
-            component: function() {
-                return import('../views/article.vue')
-            }
+            path: '/',
+            component: () => import('../layout/white.vue'),
+            children: [
+                {
+                    name: 'newsIndex',
+                    path: 'news',
+                    component: () => import('../views/News.vue')
+                },
+                {
+                    name: 'news',
+                    path: 'news/:id',
+                    component: () => import('../views/News.vue')
+                },
+            ],
         },
-        {
-            name: "about",
-            path: "/about",
-            component: function() {
-                return import('../views/about.vue')
-            }
-        },
-        {
-            name: "location",
-            path: "/location",
-            component: function() {
-                return import('../views/location.vue')
-            },
-            meta: {
-                requiresAuth: true
-            }
-        },
-        {
-            name: "news",
-            path: "/news/:ID",
-            component: function() {
-                return import('../views/news.vue')
-            }
-        },
-        {
-            name: "hello",
-            path: "/hello",
-            component: function() {
-                return import('../components/HelloWorld.vue')
-            }
-        },
-        {
-            name: "demo",
-            path: "/demo",
-            component: function() {
-                return import('../views/demo.vue')
-            }
-        }
     ]
   })
 

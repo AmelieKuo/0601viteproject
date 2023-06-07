@@ -12,11 +12,11 @@
           </a>
         </div>
 
-        <div class="h-100% flex flex-row-reverse justify-between md:w-50% lg:flex-row">
-          <div class="w-50% max-w-[80px] lg:max-w-600px lg:h-100% overflow-hidden">
+        <div class="flex flex-row-reverse justify-between md:w-50% lg:flex-row">
+          <div class="w-50% max-w-[80px] lg:max-w-700px lg:h-100% overflow-hidden">
             <img src="../../public/Left.png" alt="" class="block w-100% object-cover lg:h-100%">
           </div>
-          <div class="flex flex-col gap-16px box-border max-w-65% lg:max-w-100% lg:p-l-24px">
+          <div class="w-50% flex flex-col gap-16px box-border md:w-50% justify-center lg:max-w-100% lg:p-l-24px">
             <h2 class="font-bold tracking-0.4em text-14px lg:text-16px lg:p-t-12px">News</h2>
             <p class="leading-18px text-13px text-12px lg:text-13px">The average lifespan of pet cats has risen in recent decades.</p>
             <a href="#" class="block color-[#EFC862] decoration-0 font-bold leading-22px text-14px">Read more</a>

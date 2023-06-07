@@ -10,7 +10,7 @@ import { ref, onMounted } from "vue";
     const menuParent = document.getElementById('menuParent');
 
     menu.classList.remove('-top-100%');
-    menu.classList.add('top-0', 'transition-1500', 'ease-in-out', 'opacity-100');
+    menu.classList.add('top-0');
     menuParent.classList.remove('after:hidden');
     menuParent.classList.add('after:block');
   };
@@ -21,29 +21,28 @@ import { ref, onMounted } from "vue";
     const menuParent = document.getElementById('menuParent');
 
     menu.classList.remove('top-0');
-    menu.classList.add('-top-100%', 'transition-3000', 'ease-in-out', 'opacity-0');
+    menu.classList.add('-top-100%');
     menuParent.classList.remove('after:block');
     menuParent.classList.add('after:hidden');
   };
 
 
   // /news/ID ID 產生方式
-  const ID = ref("");
+  const id = ref("");
 
   function getID(){
-    ID.value = new Date().getTime().toString(); // 獲取當前時間的 ISO 字符串
-    console.log(ID.value);
+    id.value = new Date().getTime().toString(); // 獲取當前時間的 ISO 字符串
+    console.log(id.value);
   };
 
   const router = useRouter();
 
   function toNewsPage() {
     getID();
-    router.push({ path: '/news/' + ID.value });
+    router.push({ path: 'news/' + id.value });
+  };
 
-    toFatherID();
-   };
-
+// toFatherID();
 //    function toFatherID(){
 //     const emits = defineEmits(ID);
 //    }
@@ -59,7 +58,7 @@ import { ref, onMounted } from "vue";
         <!-- mobile 遮罩 -->
         <nav
             id="menuParent"
-            class="w-100% h-100% flex justify-center items-center after:hidden after:content-[''] after:w-100vw after:h-100vh after:bg-white after:bg-opacity-40 after:absolute after:top-0px after:left-0px after:z-1 lg:after:bg-opacity-100 lg:leading-loose lg:justify-end lg:h-auto">
+            class="w-100% h-100% flex justify-center items-center after:hidden after:content-[''] after:w-100vw after:h-100vh after:bg-white after:bg-opacity-40 after:absolute after:top-0px after:left-0px after:z-1 lg:after:hidden lg:leading-loose lg:justify-end lg:h-auto">
 
             <!-- hamburger -->
             <div class="w-100% lg:hidden" @click="showMenu">
@@ -87,21 +86,21 @@ import { ref, onMounted } from "vue";
                         </li>
                         <li>
                             <router-link
-                                to="/article"
+                                to="article"
                                 class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]"
                                 :class="{'active:color-[#EFC862]': $route.name === 'article'}">A-Article</router-link>
                         </li>
                         <li
                             class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">
                             <router-link
-                                to="/about"
+                                to="about"
                                 class="a-black"
                                 :class="{'active:color-[#EFC862]': $route.name === 'about'}">B-About</router-link>
                         </li>
                         <li
                             class="text-white text-18px hover:color-[#EFC862] hover:underline active:color-[#EFC862]">
                             <router-link
-                                to="/location"
+                                to="location"
                                 class="a-black"
                                 :class="{'active:color-[#EFC862]': $route.name === 'location'}">C-Location</router-link>
                         </li>
@@ -112,6 +111,13 @@ import { ref, onMounted } from "vue";
                                 @click="toNewsPage"
                                 class="a-black"
                                 :class="{'active:color-[#EFC862]': $route.name === 'news'}">D-News</a>
+
+                            <!-- <router-link
+                                to="news"
+                                class="a-black"
+                                :class="{'active:color-[#EFC862]': $route.name === 'location'}">D-News</router-link> -->
+
+
                         </li>
                         <li>
                             <img src="../../public/zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
