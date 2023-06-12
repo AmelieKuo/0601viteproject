@@ -3,18 +3,40 @@
     import Sidebar from "../components/Sidebar.vue";
     import Footer from "../components/Footer.vue"
 
+    import { ref } from "vue";
     import { defineEmits, defineProps } from "vue"; 
+    
+    // 接收 header 傳來的 data && 傳到 App vue
+
+    const idDate = ref('');
+
+    function getNewsDate(idDate) {
+        // console.log(idDate);
+        toApp(idDate);
+        // toNews(idDate);
+    };
+
+    const emits = defineEmits(['idDateChanged']);
+
+    function toApp(idDate) {
+        emits('idDateChanged',idDate);
+        // console.log(idDate);
+    };
 
 
-
-    // const newsID = function getNewsID(id){
-    //     console.log(id)
+    // const getNewsDate = (idDate) => {
+    //     console.log(idDate);
+    //     toApp();
     // };
 
-    const getNewsID = (id) => {
-        console.log(id);
-        TODOLIST
-    };
+
+    // 接收 header 傳來的 data && 傳到 news info
+    // const props = defineProps(['toNewsInfo']);
+
+    // function toNews(idDate) {
+    //     props.toNewsInfo = idDate;
+    //     console.log(idDate);
+    // };
 
 </script>
 
@@ -29,10 +51,10 @@
 
             <Sidebar></Sidebar>
 
-            <Header @idChanged="getNewsID"></Header>
+            <Header @idDateChanged="getNewsDate"></Header>
             
             <!-- Main Content -->
-            <router-view></router-view>
+            <router-view :idDate="idDate"></router-view>
             <!-- end: Main Content -->
 
 

@@ -3,7 +3,7 @@
 
 <template>
 
-            <!-- Main Content -->
+            
             <section class="col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2">
                 <div
                     class="flex items-start justify-between lg:p-[40px_20px_20px_20px] lg:h-100% lg:justify-around">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </section>
-            <!-- end: Main Content -->
+            
 </template>
 <style>
 </style>
