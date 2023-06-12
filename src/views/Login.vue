@@ -2,12 +2,20 @@
 import { useRouter, useRoute } from 'vue-router';
 import { FETCH_USER } from '@/services';
 import { ref } from 'vue';
+import { SET_COOKIES, REMOVE_COOKIES } from '@/plugins'
+import { setupUserAuthStore } from '@/stores'
+import Swal from "sweetalert2";
+
 
 const username = ref('');
 const password = ref('');
-const data = ref('')
 
-function loginSubmit(){
+const router = useRouter();
+
+const userAuthStore = setupUserAuthStore();
+const { GET_USERINFO } = userAuthStore
+
+async function loginSubmit(){
 
     // 登入 api
     // event.preventDefault(); 用 @submit.prevent 取代
@@ -17,14 +25,34 @@ function loginSubmit(){
         password: password.value
     };
 
-    // FETCH_USER.login(userInput);
+    
+    // 已在 axiosInstance 解構，在這裡取得需使用的資訊，data.accessToken、message、success
+    const { data, message, success } = await FETCH_USER.login(userInput);
 
-    // console.log(userInput)
+    if (!success){
+        return
+    }
 
-    // 獲取 userInfo api
-    FETCH_USER.getUserInfo();
-    console.log(data);
+    // 取得 data.accessToken
+    const { accessToken } = data
 
+    // 建立 COOKIES
+    const cookieToken = await SET_COOKIES(accessToken);
+    // console.log(cookieToken)
+
+    // 調用 store 方法，取得 userInfo success
+    const userInfo = await GET_USERINFO();
+    // console.log(userInfo.success);
+    if (userInfo.success){
+        Swal.fire({
+        icon: 'success',
+        text: '登入成功',
+        timer: 3000,
+        timerProgressBar: true
+    }).then(()=> {
+        router.push('/')
+    })
+    }
 };
 
 

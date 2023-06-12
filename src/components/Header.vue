@@ -2,6 +2,11 @@
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import { defineEmits, defineProps } from "vue"; 
+import { setupUserAuthStore } from '@/stores'
+import { GET_COOKIES } from '../plugins';
+
+const userAuthStore = setupUserAuthStore();
+const { GET_USERINFO,FN_LOGOUT } = userAuthStore;
 
   // menuToggle
   const menuisOpen = ref(false);
@@ -38,7 +43,30 @@ import { defineEmits, defineProps } from "vue";
 
     emits('idDateChanged',idDate.value);
    };
+   
 
+   // 取得是否登入，如果是則顯示 logout btn & username
+   const userName = ref('');
+   const loginState = ref(false);
+
+   const userAccessToken = GET_COOKIES() || '';   
+   onMounted(async function() {
+        if (!userAccessToken) {
+            return;
+        } else {
+            const userInfo = await GET_USERINFO();
+            const { data } = userInfo;
+            userName.value = data.name;
+
+            loginState.value = true;
+        }
+    });
+
+
+    // 登出
+    function toLogout(){
+        FN_LOGOUT()
+    };
 
 </script>
 
@@ -63,7 +91,6 @@ import { defineEmits, defineProps } from "vue";
 
                 <ul
                     :class="menuisOpen === false ? '-top-100%' : 'top-0'"
-                    id="menu"
                     class="absolute bg-black w-100% min-h-300px right-0 -top-100% z-9 flex flex-col gap-20px p-24px box-border lg:static lg:bg-transparent lg:min-h-[auto] lg:flex lg:flex-row lg:justify-end lg:gap-55px lg:p-0px lg:w-auto">
 
                     <!-- close -->
@@ -112,13 +139,27 @@ import { defineEmits, defineProps } from "vue";
                                 :class="{'active:color-[#EFC862]': $route.name === 'location'}">D-News</router-link> -->
 
 
+                            </li>
+                        <li
+                            :class="loginState === false ? 'hidden' : 'block'"
+                            class="text-[#EFC862] text-18px">
+                            Hi {{ userName }}
                         </li>
                         <li
+                            :class="loginState === false ? 'hidden' : 'block'"
+                            class=" text-[#EFC862] text-18px hover:opacity-70 lg:px-15px lg:bg-[#EFC862] lg:b-rd-2 lg:text-black">
+                            <a
+                                @click="toLogout"
+                                class="a-black text-black">Logout</a>
+                        </li>
+                        
+                        <li
+                            :class="loginState === false ? 'block' : 'hidden'"
                             class=" text-[#EFC862] text-18px hover:opacity-70 lg:px-15px lg:bg-[#EFC862] lg:b-rd-2 lg:text-black">
                             <router-link
                                 to="/login"
                                 class="a-black"
-                                :class="{'text-[#EFC862] lg:text-orange-800': $route.name === 'login'}">Login</router-link>
+                                :class="{'text-[#EFC862] lg:text-orange-800': $route.name === 'login'}">login</router-link>
                         </li>
                         <li>
                             <img src="../../public/zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>

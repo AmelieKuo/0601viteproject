@@ -23,13 +23,16 @@ export const routes = [
                 name: 'location',
                 path: 'location',
                 component: () => import ('../views/Location.vue'),
-                meta: {
-                    requiresAuth: true
-                }
+                // meta: {
+                //     requiresAuth: true
+                // }
             }, {
                 name: 'login',
                 path: 'login',
                 component: () => import ('../views/Login.vue'),
+                // meta: {
+                //     requiresAuth: true
+                // }
             }
         ]
     },

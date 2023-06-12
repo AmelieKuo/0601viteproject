@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { GET_COOKIES } from '@/plugins'
 
 // axios.create([config])
 const axiosInstance = axios.create({
@@ -9,11 +10,22 @@ const axiosInstance = axios.create({
 // Add a request interceptor 請求攔截器
 axiosInstance.interceptors.request.use(function (config) {
     // Do something 『 before request 』is sent
-    console.log({config})
-    console.log('請求成功')
-    return config;
+    // console.log({config})
+    // console.log('請求成功')
+
+    const { headers, ...configSetting } = config
+  
+    // GET_COOKIES，如果有的話存到 header Authorization
+    const accessToken = GET_COOKIES() || ''
+    // console.log(accessToken)
+    
+    if(accessToken) {
+      headers['Authorization'] = `Bearer ${accessToken}`
+    }
+    return {...configSetting, headers};
+
   }, function (error) {
-    console.log('請求失敗')
+    // console.log('請求失敗')
     return Promise.reject(error);
   });
 
@@ -21,10 +33,25 @@ axiosInstance.interceptors.request.use(function (config) {
 axiosInstance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger >> 收到 2XX 內的的回應後續行為放這
     // Do something with response data  >> 收到的回應數據處理
-    console.log('回應成功')
-    return response;
+    
+    // console.log('回應成功')
+    const { status, data:respData = {}} = response;
+    const {data, message, success} = respData;
+
+    if(!success){
+      Swal.fire({
+        icon: 'warning',
+        text: message,
+        timer: 1500,
+        timerProgressBar: true,
+      })
+    }
+    
+    return {status, data, message, success};
+
+    // return response;
   }, function (error) {
-    console.log('回應失敗')
+    // console.log('回應失敗')
     return Promise.reject(error);
   });
 

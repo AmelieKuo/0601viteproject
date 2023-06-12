@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import { setupRouter } from './router'
-import { setupPinia } from './store';
+import { setupPinia } from './stores';
 
 import { setupSwal } from '@/plugins' // 外掛
 
