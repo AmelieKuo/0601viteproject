@@ -33,6 +33,13 @@ export const routes = [
                 // meta: {
                 //     requiresAuth: true
                 // }
+            }, {
+                name: 'signup',
+                path: 'signup',
+                component: () => import ('../views/Signup.vue'),
+                // meta: {
+                //     requiresAuth: true
+                // }
             }
         ]
     },

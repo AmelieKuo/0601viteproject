@@ -14,7 +14,7 @@
 
         <div class="max-h-100% flex flex-row-reverse justify-between md:h-100% md:w-50% md:gap-10px lg:flex-row lg:gap-24px">
           <div class="w-50% h-100% max-w-[80px] md:max-w-300px md:grow-1 lg:max-w-700px lg:h-100% overflow-hidden">
-            <img src="../../public/Left.png" alt="" class="block w-100% object-cover lg:h-100%">
+            <img src="/Left.png" alt="" class="block w-100% object-cover lg:h-100%">
           </div>
           <div class="w-50% flex flex-col gap-16px box-border md:w-50% justify-center lg:max-w-100%">
             <h2 class="font-bold tracking-0.4em text-14px lg:text-16px lg:p-t-12px">News</h2>

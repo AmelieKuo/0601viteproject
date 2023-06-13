@@ -1,3 +1,4 @@
+import { url } from '@vee-validate/rules'
 import { axiosInstance } from "../axiosInstance";
 
 export const FETCH_USER ={

@@ -8,9 +8,9 @@
         <!-- social media -->
         <div class="hidden p-b-40px lg:block">
           <ul class="flex flex-col gap-32px">
-            <li><img src="../../public/t.png" alt="" class="block"></li>
-            <li><img src="../../public/IN.png" alt="" class="block"></li>
-            <li><img src="../../public/f.png" alt="" class="block"></li>
+            <li><img src="/t.png" alt="" class="block"></li>
+            <li><img src="/IN.png" alt="" class="block"></li>
+            <li><img src="/f.png" alt="" class="block"></li>
           </ul>
         </div>
       </div>

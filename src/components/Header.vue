@@ -1,7 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
-import { defineEmits, defineProps } from "vue"; 
 import { setupUserAuthStore } from '@/stores'
 import { GET_COOKIES } from '../plugins';
 
@@ -85,7 +84,7 @@ const { GET_USERINFO,FN_LOGOUT } = userAuthStore;
             <!-- hamburger -->
             <div class="w-100% lg:hidden" @click="menuToggle">
                 <img
-                    src="../../public/hamburger.svg"
+                    src="/hamburger.svg"
                     alt=""
                     class="block m-l-auto h-auto w-24px hover:ease-in-out hover:duration-300 hover:scale-135"></div>
 
@@ -96,7 +95,7 @@ const { GET_USERINFO,FN_LOGOUT } = userAuthStore;
                     <!-- close -->
                     <li class="h-30px lg:hidden" id="close" @click="menuToggle">
                         <img
-                            src="../../public/close.svg"
+                            src="/close.svg"
                             alt=""
                             class="color-white text-white block m-l-auto hover:ease-in-out hover:duration-300 hover:scale-135"></li>
 
@@ -153,16 +152,24 @@ const { GET_USERINFO,FN_LOGOUT } = userAuthStore;
                                 class="a-black text-black">Logout</a>
                         </li>
                         
-                        <li
+                        <!-- <li
                             :class="loginState === false ? 'block' : 'hidden'"
                             class=" text-[#EFC862] text-18px hover:opacity-70 lg:px-15px lg:bg-[#EFC862] lg:b-rd-2 lg:text-black">
                             <router-link
                                 to="/login"
                                 class="a-black"
-                                :class="{'text-[#EFC862] lg:text-orange-800': $route.name === 'login'}">login</router-link>
+                                :class="{'text-[#EFC862] lg:text-orange-800': $route.name === 'login'}">Login</router-link>
+                        </li> -->
+                        <li
+                            :class="loginState === false ? 'block' : 'hidden'"
+                            class=" text-[#EFC862] text-18px hover:opacity-70 lg:px-15px lg:bg-[#EFC862] lg:b-rd-2 lg:text-black">
+                            <router-link
+                                to="/signup"
+                                class="a-black"
+                                :class="{'text-[#EFC862] lg:text-orange-800': $route.name === 'signup'}">Signup</router-link>
                         </li>
                         <li>
-                            <img src="../../public/zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
+                            <img src="/zoom_in_24px.png" alt="" class="p-[10px_0] block"></li>
                         </ul>
                     </nav>
                 </header>

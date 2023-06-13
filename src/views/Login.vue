@@ -50,6 +50,7 @@ async function loginSubmit(){
         timer: 3000,
         timerProgressBar: true
     }).then(()=> {
+        // location.reload();
         router.push('/')
     })
     }
@@ -63,7 +64,7 @@ async function loginSubmit(){
     
     <section
         class="p-40px col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2 flex flex-col justify-center items-center">
-        <h1 class="font-bold text-36px m-b-24px leading-[1] lg:text-60px">登入頁</h1>
+        <h1 class="font-bold text-36px m-b-24px leading-[1] lg:text-60px">登入</h1>
         <form class="flex flex-col gap-10px max-w-900px min-w-300px" @submit.prevent="loginSubmit">
 
             <div>

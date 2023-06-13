@@ -5,6 +5,8 @@ import { setupRouter } from './router'
 import { setupPinia } from './stores';
 
 import { setupSwal } from '@/plugins' // 外掛
+import { setupVeeValidator } from '@/plugins/vee-validate' // 外掛
+
 
 import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css';
@@ -17,6 +19,7 @@ async function setupApp(){
     // use
     setupPinia(AppInstance)
     setupSwal(AppInstance)
+    setupVeeValidator(AppInstance)
 
     await setupRouter(AppInstance)
     // use end

@@ -37,7 +37,7 @@ export function setupRoutePermission(routerInstance) {
       }
   
       // 登入後無法進入登入頁
-      if (to.path === '/login') {
+      if (to.path === '/login' || to.path === '/signup') {
         if (userAccessToken) {
           return false
         } else {
