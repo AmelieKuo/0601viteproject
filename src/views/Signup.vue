@@ -5,21 +5,36 @@
 
     <section
         class="p-40px col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2 flex flex-col justify-center items-center">
-        <h1 class="font-bold text-36px m-b-24px leading-[1] lg:text-60px">註冊</h1>
-        <V-Form class="flex flex-col gap-10px max-w-900px min-w-300px">
-            <div>
+        <h1 class="font-bold text-36px m-b-50px leading-[1] lg:text-60px">註冊</h1>
+        <V-Form class="grid grid grid-cols-2 grid-rows-3 gap-20px max-w-900px min-w-300px">
+            <div class="col-start-1 col-end-3 row-start-1 row-end-2">
                 <label name="name" class="block font-bold mb-2" for="">姓名</label>
                 <V-Field name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="請輸入帳號" rules="required"/>
                 <V-ErrMsg name="name"/>
             </div>
-            <div>
+            <div class="col-start-1 col-end-2 row-start-2 row-end-3">
                 <label name="username" class="block font-bold mb-2" for="">帳號</label>
                 <V-Field name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="請輸入帳號" rules="required"/>
                 <V-ErrMsg name="username"/>
             </div>
-            <div>
+            <div class="col-start-2 col-end-3 row-start-2 row-end-3">
                 <label name="password" class="block font-bold mb-2" for="">密碼</label>
                 <V-Field name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="請輸入密碼" rules="required"/>
+                <V-ErrMsg name="password"/>
+            </div>
+            <div>
+                <label name="password" class="block font-bold mb-2" for="">確認密碼</label>
+                <V-Field name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="請輸入密碼" rules="required"/>
+                <V-ErrMsg name="password"/>
+            </div>
+            <div>
+                <label name="password" class="block font-bold mb-2" for="">手機號碼</label>
+                <V-Field name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="請輸入手機號碼" rules="required"/>
+                <V-ErrMsg name="password"/>
+            </div>
+            <div>
+                <label name="password" class="block font-bold mb-2" for="">驗證碼</label>
+                <V-Field name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="請輸入驗證碼" rules="required"/>
                 <V-ErrMsg name="password"/>
             </div>
             <div class="flex gap-15px md:gap-10px m-[20px_auto_0px_auto] flex-col md:flex-row md:items-end">
